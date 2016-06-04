@@ -1,0 +1,1855 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!--开发者说明-->
+    <meta name="author" content="BruceWan" />
+    <meta name="generator" content="Softwan" />
+    <meta name="copyright" content="China by BruceWan" />
+    <meta name="keywords" content="游戏, 小游戏, 冒险, 冒险类游戏, 精灵的小鸟, 淘气的小鸟, 像素化游戏, 像素, 像素小游戏, 游戏平台" />
+    <meta name="description" content="游戏中心的游戏可以免费玩耍，如有问题请联系E-mail:1101587171@qq.com" />
+    <!--/*<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />//不允许缩放*/-->
+    <link rel="shortcut icon" href="image/favicon.ico" />
+    <title>"淘气的小鸟（Elvish Bird）"</title>
+
+    <style>
+        body {
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            padding: 0px;
+            margin: 0px;
+            background-color: #000;
+            overflow: hidden cursor:default;
+        }
+
+        .welcome {
+            width: 288px;
+            height: 500px;
+            background-image: url(image/welcome.png);
+            background-repeat: no-repeat;
+            margin: auto;
+            cursor: default;
+        }
+
+        .mainDisplay {
+            border-color: #000;
+            border-width: 1px;
+            border-style: double;
+            width: 288px;
+            height: 500px;
+            background-image: url(image/bg1.png);
+            //需要判断白天和夜晚 background-repeat:no-repeat;
+            margin: auto;
+            display: none;
+            cursor: default;
+            z-index: 1;
+        }
+
+        .wallDisplay {
+            width: 288px;
+            height: 98px;
+            background-image: url(image/wall.png);
+            background-repeat: repeat-x;
+            position: relative;
+            margin-top: 402px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .mainMenu {
+            border: none;
+            background-color: transparent;
+            width: 288px;
+            height: 300px;
+            top: 145px;
+            z-index: 3;
+            position: absolute;
+            cursor: default;
+        }
+
+        .logoImg {
+            background-image: url(image/title.png);
+            background-repeat: no-repeat;
+            cursor: default;
+            width: 178px;
+            height: 53px;
+            margin: auto;
+        }
+
+        .logobird {
+            background-image: url(image/bird2_1_0.png);
+            background-repeat: no-repeat;
+            cursor: default;
+            width: 34px;
+            height: 34px;
+            margin: auto;
+            margin-top: 25px;
+            margin-left: 125px;
+            position: absolute;
+        }
+
+        .logorate {
+            background-image: url(image/rate.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 74px;
+            height: 48px;
+            margin: auto;
+            margin-top: 78px;
+        }
+
+        .logobtnplay {
+            background-image: url(image/play.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 116px;
+            height: 70px;
+            float: left;
+            margin-left: 20px;
+            margin-top: 24px;
+        }
+
+        .logobtnranking {
+            background-image: url(image/ranking.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 116px;
+            height: 70px;
+            float: left;
+            margin-left: 15px;
+            margin-top: 24px;
+        }
+
+        .logoidiograph {
+            background-image: url(image/idiograph.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 126px;
+            height: 14px;
+            clear: both;
+            margin: auto;
+            margin-top: 102px;
+        }
+
+        .startPage {
+            border: none;
+            background-color: transparent;
+            width: 288px;
+            height: 500px;
+            z-index: 3;
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+
+        .logoImg2 {
+            background-image: url(image/getready.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 196px;
+            height: 62px;
+            margin: auto;
+            margin-top: 109px;
+        }
+
+        .logoImg3 {
+            width: 50px;
+            height: 24px;
+            background-image: url(image/mouse.png);
+            background-repeat: no-repeat;
+            margin-left: 182px;
+            margin-top: 6px;
+        }
+
+        .logoExplain {
+            background-image: url(image/tap.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 114px;
+            height: 98px;
+            margin: auto;
+            margin-top: 15px;
+        }
+
+        .aboutPage {
+            border: none;
+            background-color: transparent;
+            background-image: url(image/about.png);
+            background-repeat: no-repeat;
+            width: 288px;
+            height: 500px;
+            z-index: 4;
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+
+        .rankinglist {
+            border: none;
+            background-repeat: x-repeat;
+            background-image: url(image/bg1.png);
+            width: 290px;
+            height: 502px;
+            z-index: 7;
+            position: absolute;
+            cursor: default;
+            display: none;
+            margin-top: -1px;
+            margin-left: -1px;
+            border-color: #000;
+            border-width: 1px;
+            border-style: double;
+        }
+
+        .rankinglistimg {
+            background-image: url(image/rankinglist.png);
+            background-repeat: no-repeat;
+            position: absolute;
+            z-index: 7;
+            width: 190px;
+            height: 50px;
+            left: 50px;
+            top: 120px;
+            display: block;
+        }
+
+        .history {
+            background-color: transparent;
+            position: absolute;
+            z-index: 7;
+            width: 190px;
+            height: 150px;
+            left: 50px;
+            top: 170px;
+            display: block;
+            cursor: default;
+        }
+
+        .historylist {
+            position: relative;
+            background-color: transparent;
+            z-index: 7;
+            width: 190px;
+            height: 28px;
+            display: block;
+            cursor: default;
+            margin-bottom: 10px;
+        }
+
+        .hisnoclass2 {
+            margin-left: 6px;
+            z-index: 7;
+            cursor: default;
+            float: left;
+        }
+
+        .hisnoclass {
+            z-index: 7;
+            cursor: default;
+            margin-left: 80px; /*v1:100px*/
+        }
+
+        .btnok {
+            background-image: url(image/ok.png);
+            background-repeat: no-repeat;
+            background-color: transparent;
+            position: absolute;
+            z-index: 7;
+            width: 80px;
+            height: 28px;
+            left: 50px;
+            top: 330px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .btnshare {
+            background-image: url(image/share.png);
+            background-repeat: no-repeat;
+            background-color: transparent;
+            position: absolute;
+            z-index: 7;
+            width: 80px;
+            height: 28px;
+            left: 160px;
+            top: 330px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .gameover2 {
+            border: none;
+            background-color: transparent;
+            background-image: url(image/gameover2.png);
+            background-repeat: no-repeat;
+            width: 288px;
+            height: 500px;
+            z-index: 4;
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+
+        .gameover1 {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            width: 288px;
+            height: 500px;
+            z-index: 4;
+            position: absolute;
+            cursor: default;
+            display: none;
+        }
+
+        .gameoverimg {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/gameover.png);
+            top: 140px;
+            left: 45px;
+            width: 204px;
+            height: 54px;
+            z-index: 4;
+            position: absolute;
+            cursor: default;
+            display: block;
+        }
+
+        .medalwallimg {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/medalwall.png);
+            top: 205px;
+            left: 34px;
+            width: 226px;
+            height: 114px;
+            z-index: 4;
+            position: absolute;
+            cursor: default;
+            display: block;
+        }
+
+        .medalimg {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/medal4.png);
+            top: 248px;
+            left: 60px;
+            width: 44px;
+            height: 44px;
+            z-index: 5;
+            position: absolute;
+            cursor: default;
+            display: block;
+        }
+
+        .newimg {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/new.png);
+            top: 263px;
+            left: 170px;
+            width: 44px;
+            height: 44px;
+            z-index: 5;
+            position: absolute;
+            cursor: default;
+            display: none;
+        }
+
+        .integralimg1 {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            top: 240px;
+            left: 158px; /*v1:172px*/
+            width: 95px; /*v1:70px*/
+            height: 22px;
+            z-index: 5;
+            position: absolute;
+            cursor: default;
+            display: block;
+        }
+
+        .integralimg2 {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            top: 280px;
+            left: 158px; /*v1:172px*/
+            width: 95px; /*v1:70px*/
+            height: 22px;
+            z-index: 5;
+            position: absolute;
+            cursor: default;
+            display: block;
+        }
+
+        .retryimg {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/play.png);
+            top: 344px;
+            left: 20px;
+            width: 122px;
+            height: 70px;
+            z-index: 4;
+            position: absolute;
+            cursor: pointer;
+            display: block;
+        }
+
+        .rankingimg {
+            border: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/ranking.png);
+            top: 344px;
+            left: 155px;
+            width: 116px;
+            height: 70px;
+            z-index: 4;
+            position: absolute;
+            cursor: pointer;
+            display: block;
+        }
+
+        .playingPage {
+            border: none;
+            background-color: transparent;
+            width: 288px;
+            height: 402px;
+            z-index: 2;
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+
+        .birdplayer {
+            background-image: url(image/bird2_1_0.png);
+            background-repeat: no-repeat;
+            width: 34px;
+            height: 34px;
+            top: 240px;
+            left: 70px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 3;
+        }
+
+        .gateNO {
+            position: absolute;
+            background-repeat: no-repeat;
+            width: 104px;
+            height: 36px;
+            top: 85px;
+            left: 106px;
+            cursor: pointer;
+            z-index: 3;
+            background-color: transparent;
+        }
+
+        .gNO {
+            position: relative;
+            z-index: 3;
+            width: 24px;
+            height: 36px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-image: url(image/no0.png);
+            background-color: transparent;
+            padding-left: 2px;
+            float: left;
+        }
+
+        .obstacle1 {
+            width: 52px;
+            height: 320px;
+            background-image: url(image/waterpipe3.png);
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0px;
+            right: -58px;
+            display: block;
+            z-index: 2;
+        }
+
+        .obstacle2 {
+            width: 52px;
+            height: 320px;
+            background-image: url(image/waterpipe4.png);
+            background-repeat: no-repeat;
+            position: absolute;
+            bottom: 0px;
+            right: -58px;
+            display: block;
+            z-index: 2;
+        }
+
+        .lefthide {
+            width: 59px;
+            height: 502px;
+            background-color: transparent;
+            position: absolute;
+            top: -1px;
+            right: -60px;
+            display: block;
+            z-index: 7;
+            cursor: default;
+            border-left-color: #000;
+            border-left-width: 1px;
+            border-left-style: double;
+        }
+
+        .righthide {
+            width: 59px;
+            height: 502px;
+            background-color: transparent;
+            position: absolute;
+            top: -1px;
+            left: -60px;
+            display: block;
+            z-index: 7;
+            cursor: default;
+            border-right-color: #000;
+            border-right-width: 1px;
+            border-right-style: double;
+        }
+
+        .bottomhide {
+            width: 402px;
+            height: 182px;
+            background-color: transparent;
+            position: absolute;
+            left: -58px;
+            top: 500px;
+            display: block;
+            z-index: 6;
+            cursor: default;
+            border-top-color: #000;
+            border-top-width: 1px;
+            border-top-style: double;
+        }
+
+        .soundclass {
+            width: 60px;
+            height: 25px;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-image: url(image/soundoff.png);
+            position: absolute;
+            left: 228px;
+            top: 6px;
+            display: block;
+            z-index: 3;
+            cursor: pointer;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: "方正喵呜体","微软雅黑", "黑体", "楷体";
+            color: #FAFAFA;
+        }
+    </style>
+
+    <script type="text/javascript" language="javascript">
+<!--
+//分享到腾讯微博
+function postToQQWB(integral,docurl){
+    var _t = encodeURI('你在"淘气的小鸟（Elvish Bird）"中取得了最高'+integral+'分！欢迎小朋友们来体验！');
+    var _url = encodeURI(docurl);
+	var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url;
+	window.open( _u,'转播到腾讯微博', 'width=630, height=380, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+}
+//分享到新浪微博
+function postToSINAWB(integral,docurl){
+	var _t = encodeURI('你在"淘气的小鸟（Elvish Bird）"中取得了最高'+integral+'分！欢迎小朋友们来体验！');
+	var _url = encodeURI(docurl);
+	var _u = 'http://service.weibo.com/share/share.php?url='+_url+'&title='+_t;
+	window.open( _u,'转播到新浪微博', 'width=630, height=380, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+}
+
+//写cookies
+function setCookie(name,value)
+{
+    name="ElvishBird."+name;
+	var Days = 30;
+	var exp = new Date();
+	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+//读取cookies
+function getCookie(name)
+{
+    name="ElvishBird."+name;
+	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	if(arr=document.cookie.match(reg)){
+		return unescape(arr[2]);
+	}
+	else{
+		return null;
+	}
+}
+//删除cookies
+function delCookie(name)
+{
+    name="ElvishBird."+name;
+	var exp = new Date();
+	exp.setTime(exp.getTime() - 1);
+	var cval=getCookie(name);
+	if(cval!=null){
+		document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+	}
+}
+
+//退出效果
+var quitOpc=1;
+function openQuitOpc(v){
+	if(quitOpc<=0){
+		v.style.display='none';
+		quitOpc=1;
+		v.style.opacity=quitOpc;
+	}
+	else{
+		quitOpc=quitOpc-0.05;
+		v.style.opacity=quitOpc;
+		window.setTimeout(function(){openQuitOpc(v);},20);
+	}
+}
+//进入效果
+var enterOpc=0;
+function openEnterOpc(v){
+	if(enterOpc>=1){
+		enterOpc=0;
+		v.style.opacity=1;
+	}
+	else{
+		v.style.display='block';
+		enterOpc=enterOpc+0.05;
+		v.style.opacity=enterOpc;
+		window.setTimeout(function(){openEnterOpc(v);},20);
+	}
+}
+
+//按下键效果
+function downBtn(v){
+	v.style.backgroundPosition='0px 2px';
+}
+//释放键效果
+function upBtn(v){
+	v.style.backgroundPosition='0px 0px';
+}
+
+window.onload=loading;
+window.onblur=bluring;//页面失去焦点
+window.onfocus=focusing;//页面获取焦点
+document.onkeydown=keyPlaying;//按键事件
+document.oncontextmenu=OffRightMenu;//屏蔽右键
+
+var IsStart=false;//开始正式玩耍游戏时
+var IsEnterGM=false;//进入操作指南界面时
+var IsPause=false;//是否暂停
+var IsEndGM=false;//是否结束游戏
+var IsNewShow=false;//是否显示new图
+var integral=0;//当前分数
+
+//历史分数
+var oldintegral1=0;
+var oldintegral2=0;
+var oldintegral3=0;
+var oldintegral4=0;
+
+var maxIntegral=0;//最高分数
+var main,mainBG,welcomePage,wall,logoBird,mainMenu,startPage,btnStartGM,btnRate
+,btnRanking,playingPage,birdPlayer,aboutPage,lefthide,righthide,bottomhide,gameover2,gameover1,btnRetry2,btnRanking2;
+var obstacle1,obstacle2,obstacle3,obstacle4,obstacle5,obstacle6;//6个障碍物
+var gNO1,gNO2,gNO3,gNO4;
+var igNO1,igNO2,igNO3,igNO4;
+var igNOB1,igNOB2,igNOB3,igNOB4;
+var bgs2,bgs;
+var soundclass;
+var medalimg,newimg;
+var rankinglist;
+var historylist1,historylist2,historylist3,historylist4,btnok,btnshare;
+var hisNO01,hisNO02,hisNO03,hisNO04;
+var hisNO11,hisNO12,hisNO13,hisNO14;
+var hisNO21,hisNO22,hisNO23,hisNO24;
+var hisNO31,hisNO32,hisNO33,hisNO34;
+//初始化对象
+function initObj(){
+	main=document.getElementById('main');
+	mainBG=document.getElementById('mainBG');
+	welcomePage=document.getElementById('welcomePage');
+	wall=document.getElementById('wall');
+	logoBird=document.getElementById('logoBird');
+	mainMenu=document.getElementById('mainMenu');
+	startPage=document.getElementById('startPage');
+	btnStartGM=document.getElementById('btnStartGM');
+	btnRate=document.getElementById('btnRate');
+	btnRanking=document.getElementById('btnRanking');
+	playingPage=document.getElementById('playingPage');
+	birdPlayer=document.getElementById('birdPlayer');
+	aboutPage=document.getElementById('aboutPage');
+
+	obstacle1=document.getElementById('obstacle1');
+	obstacle2=document.getElementById('obstacle2');
+	obstacle3=document.getElementById('obstacle3');
+	obstacle4=document.getElementById('obstacle4');
+	obstacle5=document.getElementById('obstacle5');
+	obstacle6=document.getElementById('obstacle6');
+
+	lefthide=document.getElementById('lefthide');
+	righthide=document.getElementById('righthide');
+	bottomhide=document.getElementById('bottomhide');
+
+	gNO1=document.getElementById('gNO1');
+	gNO2=document.getElementById('gNO2');
+	gNO3=document.getElementById('gNO3');
+	gNO4=document.getElementById('gNO4');
+
+	igNO1=document.getElementById('igNO1');
+	igNO2=document.getElementById('igNO2');
+	igNO3=document.getElementById('igNO3');
+	igNO4=document.getElementById('igNO4');
+
+	igNOB1=document.getElementById('igNOB1');
+	igNOB2=document.getElementById('igNOB2');
+	igNOB3=document.getElementById('igNOB3');
+	igNOB4=document.getElementById('igNOB4');
+
+	bgs=document.getElementById('bgs');
+	bgs2=document.getElementById('bgs2');
+
+	soundclass=document.getElementById('soundclass');
+
+	gameover2=document.getElementById('gameover2');
+	gameover1=document.getElementById('gameover1');
+
+	btnRetry2=document.getElementById('btnRetry2');
+	btnRanking2=document.getElementById('btnRanking2');
+
+	medalimg=document.getElementById('medalimg');
+	newimg=document.getElementById('newimg');
+
+	rankinglist=document.getElementById('rankinglist');
+
+	historylist1=document.getElementById('historylist1')
+	historylist2=document.getElementById('historylist2')
+	historylist3=document.getElementById('historylist3')
+	historylist4=document.getElementById('historylist4')
+
+	btnok=document.getElementById('btnok')
+	btnshare=document.getElementById('btnshare')
+
+	hisNO01=document.getElementById('hisNO01');
+	hisNO02=document.getElementById('hisNO02');
+	hisNO03=document.getElementById('hisNO03');
+	hisNO04=document.getElementById('hisNO04');
+
+	hisNO11=document.getElementById('hisNO11');
+	hisNO12=document.getElementById('hisNO12');
+	hisNO13=document.getElementById('hisNO13');
+	hisNO14=document.getElementById('hisNO14');
+
+	hisNO21=document.getElementById('hisNO21');
+	hisNO22=document.getElementById('hisNO22');
+	hisNO23=document.getElementById('hisNO23');
+	hisNO24=document.getElementById('hisNO24');
+
+	hisNO31=document.getElementById('hisNO31');
+	hisNO32=document.getElementById('hisNO32');
+	hisNO33=document.getElementById('hisNO33');
+	hisNO34=document.getElementById('hisNO34');
+}
+
+//初次加载
+function loading(){
+	initObj();
+	hideScroll();
+	closeWelcomePage();
+	randomBirdType();
+	startWhile();
+	get_Config_SoundS();
+	get_Config_MaxIntegral();
+	get_Config_Integrallist();
+}
+
+//配置管理
+function set_Config_SoundS(no){
+	setCookie("soundoff",no);
+}
+function get_Config_SoundS(){
+	var no=getCookie("soundoff");
+	if(no=='1'){
+		openOrCloseSound();
+	}
+}
+
+function set_Config_MaxIntegral(maxIntegral){
+	setCookie("maxIntegral",maxIntegral);
+}
+function get_Config_MaxIntegral(){
+	var no=getCookie("maxIntegral");
+	if(no!=null){
+		maxIntegral=parseInt(no);
+	}
+}
+
+function set_Config_Integrallist(){
+	setCookie("oldintegral1",oldintegral1);
+	setCookie("oldintegral2",oldintegral2);
+	setCookie("oldintegral3",oldintegral3);
+	setCookie("oldintegral4",oldintegral4);
+}
+function get_Config_Integrallist(){
+	var a1=getCookie("oldintegral1");
+	var a2=getCookie("oldintegral2");
+	var a3=getCookie("oldintegral3");
+	var a4=getCookie("oldintegral4");
+	if(a1!=null){
+		oldintegral1=parseInt(a1);
+	}
+	if(a2!=null){
+		oldintegral2=parseInt(a2);
+	}
+	if(a3!=null){
+		oldintegral3=parseInt(a3);
+	}
+	if(a4!=null){
+		oldintegral4=parseInt(a4);
+	}
+}
+
+//打开积分墙的分数
+function openMedalwall(){
+	closeGateNO();
+	refreshMedalwall();
+	openEnterOpc(gameover1);
+}
+function refreshMedalwall(){
+	updateMedal(integral);
+	setGateNO2(integral,igNO1,igNO2,igNO3,igNO4);
+	setGateNO2(maxIntegral,igNOB1,igNOB2,igNOB3,igNOB4);
+	if(IsNewShow){
+		showNewimg();
+	}
+	else{
+		hideNewimg();
+	}
+}
+
+//显示现在new这个记号
+function showNewimg(){
+	newimg.style.display='block';
+}
+
+//隐藏new这个记号
+function hideNewimg(){
+	newimg.style.display='none';
+}
+
+//更新奖牌
+function updateMedal(integral){
+	if(integral<10){
+		medalimg.style.backgroundImage='url(image/no.png)';
+	}
+	else if(integral<20){
+		medalimg.style.backgroundImage='url(image/medal4.png)';
+	}
+	else if(integral<30){
+		medalimg.style.backgroundImage='url(image/medal3.png)';
+	}
+	else if(integral<40){
+		medalimg.style.backgroundImage='url(image/medal2.png)';
+	}
+	else if(integral<10000){
+		medalimg.style.backgroundImage='url(image/medal1.png)';
+	}
+}
+
+//关闭积分墙的分数
+function closeMedalwall(){
+	openQuitOpc(gameover1);
+}
+
+//打开积分显示
+function openGateNO(){
+	gateNO.style.display='block';
+}
+
+//关闭积分显示
+function closeGateNO(){
+	gateNO.style.display='none';
+}
+
+//关闭欢迎页面
+function closeWelcomePage(){
+	openQuitOpc(welcomePage);
+	w_CloseWelcomePage=setInterval(openMainPage,1000);//不停止检测主界面
+}
+
+//打开主界面
+function openMainPage(){
+	mainBG.style.display='block';
+	if(isDaytime()){//根据白天晚上
+		main.style.backgroundColor='#5CE172';
+		mainBG.style.backgroundImage="url(image/bg1.png)";
+		rankinglist.style.backgroundImage="url(image/bg1.png)";
+		lefthide.style.backgroundColor='#5CE172';//障碍物屏蔽
+		righthide.style.backgroundColor='#5CE172';//障碍物屏蔽
+		bottomhide.style.backgroundColor='#5CE172';//障碍物屏蔽
+	}
+	else{
+		main.style.backgroundColor='#00A300';
+		mainBG.style.backgroundImage="url(image/bg2.png)";
+		rankinglist.style.backgroundImage="url(image/bg2.png)";
+		lefthide.style.backgroundColor='#00A300';//障碍物屏蔽
+		righthide.style.backgroundColor='#00A300';//障碍物屏蔽
+		bottomhide.style.backgroundColor='#00A300';//障碍物屏蔽
+	}
+}
+
+//离开页面事件
+function bluring(){
+	if(IsStart){
+		stop_w_SendObs();//停止发送障碍物，防止堆积过多
+		IsPause=true;
+	}
+}
+
+//进入页面事件
+function focusing(){
+	if(IsStart){
+		IsPause=false;
+		start_w_SendObs();//继续发送障碍物工作
+	}
+}
+
+//关闭主菜单
+function closeMainMenu(){
+	openQuitOpc(mainMenu);
+}
+
+//开启主菜单
+function openMainMenu(){
+	openEnterOpc(mainMenu);
+}
+
+//开启说明指南
+function openStartPage(){
+	openEnterOpc(startPage);
+	emptyGateNO();
+}
+
+//关闭说明指南
+var finishCloseStartPage=true;//确定是完成当前方法
+function closeStartPage(){
+	if(finishCloseStartPage){
+		finishCloseStartPage=false;
+		refreshObstacle();
+		openQuitOpc(startPage);
+		IsStart=true;
+		startUpstroke();
+		finishCloseStartPage=true;
+	}
+}
+
+//开启关于
+function openAboutPage(){
+	if(!IsEnterGM){//没进入准备开始前，允许打开关于界面
+		closeMainMenu();
+		openEnterOpc(aboutPage);
+	}
+	else{
+		btnPlaying();
+	}
+}
+
+//关闭关于
+function closeAboutPage(){
+	if(!IsEnterGM){//没进入准备开始前，允许打开关于界面
+		openQuitOpc(aboutPage);
+		openMainMenu();
+	}
+}
+
+//开始游戏
+var finishStartGM=true;//确定是完成当前方法
+function startGM(){
+	if(finishStartGM){
+		finishStartGM=false;
+		closeMainMenu();
+		openStartPage();
+		enterGMPage();
+		finishStartGM=true;
+	}
+}
+function downStartGM(){
+	downBtn(btnStartGM);
+}
+function upStartGM(){
+	upBtn(btnStartGM);
+}
+function outStartGM(){
+	upBtn(btnStartGM);
+}
+
+//btnRate
+function downBtnRate(){
+	downBtn(btnRate);
+}
+function upBtnRate(){
+	upBtn(btnRate);
+}
+function outBtnRate(){
+	upBtn(btnRate);
+}
+
+//btnRanking
+function downBtnRanking(){
+	downBtn(btnRanking);
+}
+function upBtnRanking(){
+	upBtn(btnRanking);
+}
+function outBtnRanking(){
+	upBtn(btnRanking);
+}
+
+//积分墙的btnRanking2
+function downBtnRanking2(){
+	downBtn(btnRanking2);
+}
+function upBtnRanking2(){
+	upBtn(btnRanking2);
+}
+function outBtnRanking2(){
+	upBtn(btnRanking2);
+}
+
+//积分墙的btnRetry2
+function retryGM(){
+	closeMedalwall();//关闭积分墙
+	refreshObstacle();//刷新道具到默认位置
+	birdPlayer.style.top="240px";//重置小鸟位置
+	integral=0;
+	emptyGateNO();//初始化积分显示
+	openGateNO();//打开积分显示
+	IsEndGM=false;
+	IsPause=false;
+	IsStart=true;
+	startUpstroke();//默认上升
+	start_w_SendObs();//开始发送道具
+}
+function downBtnRetry2(){
+	downBtn(btnRetry2);
+}
+function upBtnRetry2(){
+	upBtn(btnRetry2);
+}
+function outBtnRetry2(){
+	upBtn(btnRetry2);
+}
+
+//打开成绩排行榜
+function openRankinglist(){
+	initRankinglist();
+	openEnterOpc(rankinglist);
+}
+//初始化排行榜数据
+function initRankinglist(){
+	setGateNO2(oldintegral1,hisNO01,hisNO02,hisNO03,hisNO04);
+	setGateNO2(oldintegral2,hisNO11,hisNO12,hisNO13,hisNO14);
+	setGateNO2(oldintegral3,hisNO21,hisNO22,hisNO23,hisNO24);
+	setGateNO2(oldintegral4,hisNO31,hisNO32,hisNO33,hisNO34);
+}
+
+//关闭成绩排行榜
+function closeRankinglist(){
+	openQuitOpc(rankinglist);
+}
+
+//btnok
+function btn_OK(){
+	closeRankinglist();
+}
+function downBtnOK(){
+	downBtn(btnok);
+}
+function upBtnOK(){
+	upBtn(btnok);
+}
+function outBtnOK(){
+	upBtn(btnok);
+}
+
+//Btnshare
+function shareNow(){
+	postToQQWB(maxIntegral,'http://my.oschina.net/BruceWan/blog');
+}
+function downBtnshare(){
+	downBtn(btnshare);
+}
+function upBtnshare(){
+	upBtn(btnshare);
+}
+function outBtnshare(){
+	upBtn(btnshare);
+}
+
+var birdPlayerMotionState=0;//0 正常 1 上扬 2 下俯 3 撞地
+var birdPlayerBG=1;//小鸟背景序号
+var birdPlayerFX=0;//初始动画移位方向
+var NowBirdPlayerLoc=240;//默认位置
+//进入游戏运行界面
+function enterGMPage(){
+	birdPlayer.style.backgroundImage='url(image/bird'+birdtype+'_1_0.png)';
+	playingPage.style.display='block';
+	IsEnterGM=true;
+}
+//通过小鸟状态，颜色改变小鸟
+function changeBirdPlayer(){
+	if(!IsPause&&!IsEndGM){
+		if(IsEnterGM){
+			if(birdPlayerBG==1){
+				birdPlayerBG=2;
+			}
+			else if(birdPlayerBG==2){
+				birdPlayerBG=3;
+			}
+			else{
+				birdPlayerBG=1;
+			}
+			birdStatus();
+		}
+		if(!IsStart){//初始化动画
+			if(birdPlayerFX==0){
+				birdPlayer.style.top=NowBirdPlayerLoc+"px";
+				NowBirdPlayerLoc=NowBirdPlayerLoc-1;
+				if(NowBirdPlayerLoc<235){
+					birdPlayerFX=1;
+				}
+			}
+			else if(birdPlayerFX==1){
+				birdPlayer.style.top=NowBirdPlayerLoc+"px";
+				NowBirdPlayerLoc=NowBirdPlayerLoc+1;
+				if(NowBirdPlayerLoc>244){
+					birdPlayerFX=0;
+				}
+			}
+		}
+	}
+}
+
+//改变小鸟状态
+function birdStatus(){
+	birdPlayer.style.backgroundImage='url(image/bird'+birdtype+'_'+birdPlayerBG+'_'+birdPlayerMotionState+'.png)';
+}
+
+//重置障碍物
+function resettingObs(){
+	obstacle1.style.top='0px';
+	obstacle2.style.bottom='0px';
+	obstacle3.style.top='0px';
+	obstacle4.style.bottom='0px';
+	obstacle5.style.top='0px';
+	obstacle6.style.bottom='0px';
+
+	resettingObs1(obstacle1);
+	resettingObs1(obstacle2);
+	resettingObs1(obstacle3);
+	resettingObs1(obstacle4);
+	resettingObs1(obstacle5);
+	resettingObs1(obstacle6);
+}
+function resettingObs1(Obs){
+	Obs.style.left='294px';
+}
+
+//刷新障碍物
+function refreshObstacle(){
+	resettingObs();
+}
+
+//发送障碍物
+var ObsJudgeValue=294;
+function sendObs(){
+	if(IsStart&&!IsPause&&!IsEndGM){
+		var A=randomNext(80,240);//可见高度
+		var AObsH=320-A;//获取A障碍物的不可见高度
+		var BObsH=doBObsTop(95,A);//通过A获取B障碍物的不可见高度
+		if(obstacle1.offsetLeft>=ObsJudgeValue&&obstacle2.offsetLeft>=ObsJudgeValue){
+			sendObs2(AObsH,BObsH,obstacle1,obstacle2);
+		}
+		else if(obstacle3.offsetLeft>=ObsJudgeValue&&obstacle4.offsetLeft>=ObsJudgeValue){
+			sendObs2(AObsH,BObsH,obstacle3,obstacle4);
+		}
+		else if(obstacle5.offsetLeft>=ObsJudgeValue&&obstacle6.offsetLeft>=ObsJudgeValue){
+			sendObs2(AObsH,BObsH,obstacle5,obstacle6);
+		}
+	}
+}
+function sendObs2(AObsH,BObsH,obstacle1,obstacle2){
+	obstacle1.style.top='-'+AObsH+'px';
+	obstacle2.style.bottom='-'+BObsH+'px';
+	whileObs(obstacle1,false,0);
+	whileObs(obstacle2,false,1);
+}
+
+//循环障碍物
+function whileObs(Obs,oldPassObs,ObsFX){
+	if(Obs.offsetLeft<-58){
+		Obs.style.left='294px';
+	}
+	else{
+		if(IsStart&&!IsEndGM){
+			if(!IsPause){
+				Obs.style.left=(Obs.offsetLeft-WallSpeed)+'px';
+				checkObsCollide(Obs,birdPlayer,ObsFX);
+				if(birdPlayer.offsetLeft>=(Obs.offsetLeft+52)&&!oldPassObs){
+					oldPassObs=true;//通过当前关卡
+					setIntegral();
+				}
+			}
+			window.setTimeout(function(){ whileObs(Obs,oldPassObs,ObsFX);},synchroFloorObs);
+		}
+	}
+}
+
+//写入积分
+function setIntegral(){
+	integral=integral+0.5;
+	if(Math.floor(integral)==integral){
+		setGateNO(integral,gNO1,gNO2,gNO3,gNO4);
+		playSound3();
+	}
+}
+
+//写入最大的积分
+function setMaxIntegral(){
+	if(maxIntegral<integral){
+		maxIntegral=integral;
+		IsNewShow=true;
+	}
+	else{
+		IsNewShow=false;
+	}
+}
+
+//检测是否与障碍物碰撞
+function checkObsCollide(Obs,birdPlayer,ObsFX){//误差校正 birdPlayer-W28 Obs-W48
+	if(Obs.offsetLeft<=(birdPlayer.offsetLeft+28)){//是否进入障碍物左范围内 x轴检测
+		if((Obs.offsetLeft+48)>=birdPlayer.offsetLeft){//是否进入障碍物右范围内 x轴检测
+			if(ObsFX==0){//上障碍物
+				if(birdPlayer.offsetTop<=(320+Obs.offsetTop)){//是否碰到障碍物部分 y轴检测
+					birdAndObsCollide();
+					birdPlayerMotionState=3;
+					birdStatus();
+					verticalDescend();
+				}
+			}
+			else{//下障碍物
+				if((birdPlayer.offsetTop+28)>=Obs.offsetTop){//是否碰到障碍物部分 y轴检测
+					birdAndObsCollide();
+					birdPlayerMotionState=3;
+					birdStatus();
+					verticalDescend();
+				}
+			}
+		}
+	}
+}
+
+//获取随机数
+function randomNext(under,over){
+   switch(arguments.length){//检测传入几个参数
+   	case 1:
+  	 return parseInt(Math.random()*under+1);
+   	case 2:
+  	 return parseInt(Math.random()*(over-under+1) + under);
+  	default:
+  	 return 0;
+   }
+}
+
+//计算B障碍物长度 预留长度 可见高度
+function doBObsTop(step,AHight){
+	return 320-(402-AHight-step);//A B 320px
+}
+
+//将数据写到积分处 v 分数 c是数字对应的控件框
+function setGateNO(v,c1,c2,c3,c4){
+	var a,b,c,d;
+	if(v<10){
+		c1.style.backgroundImage='url(image/no.png)';
+		c2.style.backgroundImage=NOToImg(v);
+		c3.style.backgroundImage='url(image/no.png)';
+		c4.style.backgroundImage='url(image/no.png)';
+	}
+	else if(v/10<10){
+		c=Math.floor(v/10);
+		c1.style.backgroundImage='url(image/no.png)';
+		c2.style.backgroundImage=NOToImg(c);
+		c3.style.backgroundImage=NOToImg(v-c*10);
+		c4.style.backgroundImage='url(image/no.png)';
+	}
+	else if(v/100<10){
+		b=Math.floor(v/100);
+		c=Math.floor((v-b*100)/10);
+		c1.style.backgroundImage='url(image/no.png)';
+		c2.style.backgroundImage=NOToImg(b);
+		c3.style.backgroundImage=NOToImg(c);
+		c4.style.backgroundImage=NOToImg(v-b*100-c*10);
+	}
+	else if(v/1000<10){
+		a=Math.floor(v/1000);
+		b=Math.floor((v-a*1000)/100)
+		c=Math.floor((v-a*1000-b*100)/10)
+		c1.style.backgroundImage=NOToImg(a);
+		c2.style.backgroundImage=NOToImg(b);
+		c3.style.backgroundImage=NOToImg(c);
+		c4.style.backgroundImage=NOToImg(v-a*1000-b*100-c*10);
+	}
+	else{
+		c1.style.backgroundImage=NOToImg(8);
+		c2.style.backgroundImage=NOToImg(8);
+		c3.style.backgroundImage=NOToImg(8);
+		c4.style.backgroundImage=NOToImg(8);
+	}
+}
+//将数据写到积分处 v 分数 c是数字对应的控件框
+function setGateNO2(v,c1,c2,c3,c4){
+	var a,b,c,d;
+	if(v<10){
+		c1.src='image/no.png';
+		c2.src='image/no.png';
+		c3.src='image/no.png';
+		c4.src=NOToImg2(v);
+	}
+	else if(v/10<10){
+		c=Math.floor(v/10);
+		c1.src='image/no.png';
+		c2.src='image/no.png';
+		c3.src=NOToImg2(c);
+		c4.src=NOToImg2(v-c*10);
+	}
+	else if(v/100<10){
+		b=Math.floor(v/100);
+		c=Math.floor((v-b*100)/10);
+		c1.src='image/no.png';
+		c2.src=NOToImg2(b);
+		c3.src=NOToImg2(c);
+		c4.src=NOToImg2(v-b*100-c*10);
+	}
+	else if(v/1000<10){
+		a=Math.floor(v/1000);
+		b=Math.floor((v-a*1000)/100)
+		c=Math.floor((v-a*1000-b*100)/10)
+		c1.src=NOToImg2(a);
+		c2.src=NOToImg2(b);
+		c3.src=NOToImg2(c);
+		c4.src=NOToImg2(v-a*1000-b*100-c*10);
+	}
+	else{
+		c1.src=NOToImg2(8);
+		c2.src=NOToImg2(8);
+		c3.src=NOToImg2(8);
+		c4.src=NOToImg2(8);
+	}
+}
+
+//默认显示
+function emptyGateNO(){
+	gNO1.style.backgroundImage='url(image/no.png)';
+	gNO2.style.backgroundImage='url(image/no0.png)';
+	gNO3.style.backgroundImage='url(image/no.png)';
+	gNO4.style.backgroundImage='url(image/no.png)';
+}
+
+//将数字转化为图片
+function NOToImg(v){
+	return 'url(image/no'+v+'.png)';
+}
+//将数字转化为图片
+function NOToImg2(v){
+	return 'image/no'+v+'.png';
+}
+
+//开始按键玩耍
+function btnPlaying(){
+	if(IsStart&&!IsPause&&!IsEndGM){
+		if(isUpstrokeFinsh){
+			isDescendFinish=true;//关闭下降
+			playSound4();
+			startUpstroke();
+		}
+	}
+}
+function keyPlaying(){
+	if(event.keyCode==13||event.keyCode==32)
+	{
+		btnPlaying();
+	}
+}
+
+//上升方法
+var isUpstrokeFinsh=true;//是否完成上升
+var upstrokeFinshOfs=10;//当前上升值
+function btnUpstroke(){
+	if(!isUpstrokeFinsh){
+		if(upstrokeFinshOfs<=0||birdPlayer.offsetTop<=0){
+			isUpstrokeFinsh=true;
+			startBirdDescend();
+		}
+		else{
+			upstrokeFinshOfs=upstrokeFinshOfs-1;
+			birdPlayer.style.top=(birdPlayer.offsetTop-upstrokeFinshOfs)+'px';
+			window.setTimeout(btnUpstroke,15);
+		}
+	}
+}
+
+//启动上升
+function startUpstroke(){
+	upstrokeFinshOfs=10;
+	isUpstrokeFinsh=false;//开启上升
+	birdPlayerMotionState=1;//启动上升动画
+	btnUpstroke();//启动上升
+}
+
+//下降方法 全局循环检测
+var isDescendFinish=true;
+var descendFinishOfs=0;//当前下降值
+function btnDescend(){
+	if(IsStart){
+		if(birdPlayer.offsetTop>=371&&!IsEndGM){//撞上地面
+			descendFinishOfs=0;//初速度
+			birdAndObsCollide();
+			verticalDescend();
+		}
+		else{
+			if(!isDescendFinish&&!IsPause&&!IsEndGM){
+				descendFinishOfs=descendFinishOfs+1;
+				birdPlayer.style.top=(birdPlayer.offsetTop+descendFinishOfs)+'px';
+				if(descendFinishOfs==10){//改变小鸟方向
+					birdPlayerMotionState=2;
+				}
+				else if(descendFinishOfs==15){//改变小鸟方向
+					birdPlayerMotionState=3;
+				}
+			}
+		}
+	}
+}
+
+//小鸟碰撞
+function birdAndObsCollide(){//方法的位置不能乱放
+	bluring();//全局暂停
+	isDescendFinish=true;//降到了地面
+	IsEndGM=true;//结束游戏
+	IsStart=false;
+	playSound2();//播放声音
+	gameover_ss();//闪屏
+
+	setMaxIntegral();//写入最大值 11->22
+	set_Config_MaxIntegral(maxIntegral);//写入持久化最大值 11->22
+
+	setHistoryScore();//1->2
+	set_Config_Integrallist();//1->2
+}
+
+//写入历史分数
+function setHistoryScore(){
+	if(integral>oldintegral1){
+		var a1=oldintegral1;
+		var a2=oldintegral2;
+		var a3=oldintegral3;
+		oldintegral1=integral;
+		oldintegral2=a1;
+		oldintegral3=a2;
+		oldintegral4=a3;
+	}
+	else if(integral>oldintegral2){
+		var a2=oldintegral2;
+		var a3=oldintegral3;
+		oldintegral2=integral;
+		oldintegral3=a2;
+		oldintegral4=a3;
+	}
+	else if(integral>oldintegral3){
+		var a3=oldintegral3;
+		oldintegral3=integral;
+		oldintegral4=a3;
+	}
+	else if(integral>oldintegral4){
+		oldintegral4=integral;
+	}
+}
+
+//启动下降
+function startBirdDescend(){
+	descendFinishOfs=0;
+	birdPlayerMotionState=0;
+	isDescendFinish=false;
+}
+
+//启动垂直下落
+var verticalDescendFinshOfs=0;
+function verticalDescend(){
+	if(IsEndGM){
+		if(birdPlayer.offsetTop>=371){
+			verticalDescendFinshOfs=0;//初速度
+			birdPlayerMotionState=3;
+			birdStatus();
+			openMedalwall();
+		}
+		else{
+			verticalDescendFinshOfs=verticalDescendFinshOfs+1;
+			birdPlayer.style.top=(birdPlayer.offsetTop+verticalDescendFinshOfs)+'px';
+			if(verticalDescendFinshOfs==15){
+				playSound1();
+			}
+			window.setTimeout(verticalDescend,15);
+		}
+	}
+}
+
+//游戏结束时的闪屏
+function gameover_ss(){
+	gameover2.style.display='block';
+	openQuitOpc(gameover2);
+}
+
+//播放音频
+var openSound=true;
+function playSound1(){
+	if(openSound){
+		bgs2.innerHTML=playSound("sound/sfx_die.mp3");
+	}
+}
+function playSound2(){
+	if(openSound){
+		bgs.innerHTML=playSound("sound/sfx_hit.mp3");
+	}
+}
+function playSound3(){
+	if(openSound){
+		bgs2.innerHTML=playSound("sound/sfx_point.mp3");
+	}
+}
+function playSound4(){
+	if(openSound){
+		bgs.innerHTML=playSound("sound/sfx_wing.mp3");
+	}
+}
+function playSound5(){
+	if(openSound){
+		bgs.innerHTML=playSound("sound/sfx_swooshing.mp3");
+	}
+}
+function playSound(url){
+	return "<embed src=\""+url+"\" autoplay=\"true\" hidden=\"true\" loop=\"false\" width=\"0px\" height=\"0px\" type=\"audio/mpeg\"></embed>";
+}
+
+var NowLogoBirdLoc=18;//默认位置
+var NowLogoBirdFX=0;//logo中小鸟的方向
+var NowLogoBirdBG=1;//小鸟的序号
+var birdtype=1;//小鸟类型
+//随机修改封面小鸟颜色
+function randomBirdType(){
+	var type=0;
+	while(true){
+		type=Math.round(Math.random()*10);
+		if(type<4&&type>0){
+			birdtype=type;
+			break;
+		}
+	}
+}
+//logoBird的运动效果
+function logoSportsBird(){
+	if(!IsPause){
+		if(NowLogoBirdFX==0){
+			logoBird.style.marginTop=NowLogoBirdLoc+"px";
+			NowLogoBirdLoc=NowLogoBirdLoc-1;
+			if(NowLogoBirdLoc<18){
+				NowLogoBirdFX=1;
+			}
+		}
+		else if(NowLogoBirdFX==1){
+			logoBird.style.marginTop=NowLogoBirdLoc+"px";
+			NowLogoBirdLoc=NowLogoBirdLoc+1;
+			if(NowLogoBirdLoc>25){
+				NowLogoBirdFX=0;
+			}
+		}
+		if(NowLogoBirdBG==1){
+			logoBird.style.backgroundImage='url(image/bird'+birdtype+'_'+NowLogoBirdBG+'_0.png)';
+			NowLogoBirdBG=2;
+		}
+		else if(NowLogoBirdBG==2){
+			logoBird.style.backgroundImage='url(image/bird'+birdtype+'_'+NowLogoBirdBG+'_0.png)';
+			NowLogoBirdBG=3;
+		}
+		else{
+			logoBird.style.backgroundImage='url(image/bird'+birdtype+'_'+NowLogoBirdBG+'_0.png)';
+			NowLogoBirdBG=1;
+		}
+	}
+}
+
+//开启全局循环
+var w_Wall,w_CloseWelcomePage,w_LogoSportsBird,w_ChangeBirdPlayer,w_SendObs,w_BtnDescend;
+function startWhile(){
+	if(w_Wall==null){
+		w_Wall=window.setInterval(whileWall,synchroFloorObs);
+	}
+	if(w_LogoSportsBird==null){
+		w_LogoSportsBird=window.setInterval(logoSportsBird,80);
+	}
+	if(w_ChangeBirdPlayer==null){
+		w_ChangeBirdPlayer=window.setInterval(changeBirdPlayer,80);
+	}
+	if(w_SendObs==null){
+		w_SendObs=window.setInterval(sendObs,sendObsTime);
+	}
+	if(w_BtnDescend==null){
+		w_BtnDescend=window.setInterval(btnDescend,60);
+	}
+}
+
+//关闭全局循环
+function stopWhile(){
+}
+
+//开关声音
+function openOrCloseSoundUP(ev){
+	var oEvent=ev||event;
+	if(oEvent.button==1||oEvent.button==0){//谷歌、IE//单左键
+	}
+	else if(oEvent.button==2){//谷歌、IE右键
+		openOrCloseSound();
+	}
+	else if(oEvent.button==3){//IE兼容按下左右键
+
+	}
+}
+function openOrCloseSound(){
+	if(openSound){
+		openSound=false;
+		soundclass.style.backgroundImage='url(image/soundopen.png)';
+		set_Config_SoundS("1");
+	}
+	else{
+		openSound=true;
+		soundclass.style.backgroundImage='url(image/soundoff.png)';
+		set_Config_SoundS("0");
+	}
+}
+
+//停止循环发送障碍物,防堆积
+function stop_w_SendObs(){
+	if(w_SendObs!=null){
+		window.clearInterval(w_SendObs);
+		w_SendObs=null;
+	}
+}
+//开启循环发送障碍物,防堆积
+var sendObsTime=1400;
+function start_w_SendObs(){
+	if(w_SendObs==null){
+		w_SendObs=window.setInterval(sendObs,sendObsTime);
+	}
+}
+
+//隐藏进度条
+function hideScroll(){
+	document.body.style.overflow="hidden";
+}
+
+//屏蔽右键菜单
+function OffRightMenu(){
+	event.returnValue=false;
+	return false;
+}
+
+//循环墙运动动画
+var synchroFloorObs=25;
+var WallSpeed=3;//背景移动速度
+var WallLoc=0;//背景的默认位置
+var MaxLoc=99999999;//背景的最大位置
+function whileWall(){
+	if(!IsPause&&!IsEndGM){
+		if(WallLoc<MaxLoc){
+			wall.style.backgroundPosition="-"+WallLoc+"px 0px";
+			WallLoc=WallLoc+WallSpeed;
+		}
+		else{
+			WallLoc=0;
+		}
+	}
+}
+
+//转到我的社区
+function openRoom(){
+	window.open("http://my.oschina.net/BruceWan/blog","开发者的空间","");
+}
+
+//是否是白天
+function isDaytime(){
+	var dateTime=new Date();
+	var hours=dateTime.getHours();
+	if(hours>6&&hours<19){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+-->
+    </script>
+</head>
+
+<body id="main">
+    <!--欢迎界面-->
+    <div class="welcome" id="welcomePage">
+        <img src="image/welcome.png" width="288" height="512" />
+    </div>
+    <!--主框架界面-->
+    <div class="mainDisplay" id="mainBG">
+        <!--主菜单-->
+        <div class="mainMenu" id="mainMenu">
+            <div class="logoImg"></div>
+            <div class="logobird" id="logoBird"></div>
+            <div class="logorate" onclick="openRoom()" id="btnRate" onmousedown="downBtnRate()" onmouseup="upBtnRate()" onmouseout="outBtnRate()"></div>
+            <div class="logobtnplay" onclick="startGM()" onmousedown="downStartGM()" onmouseup="upStartGM()" onmouseout="outStartGM()" id="btnStartGM"></div>
+            <div class="logobtnranking" onclick="openRankinglist()" id="btnRanking" onmousedown="downBtnRanking()" onmouseup="upBtnRanking()" onmouseout="outBtnRanking()"></div>
+            <div class="logoidiograph" onclick="openAboutPage()"></div>
+        </div>
+        <!--开始游戏的指南界面-->
+        <div class="startPage" id="startPage" onclick="closeStartPage()">
+            <div class="logoImg3"></div>
+            <div class="logoImg2"></div>
+            <div class="logoExplain"></div>
+        </div>
+        <!--游戏的正在进行界面-->
+        <div class="playingPage" id="playingPage" onclick="btnPlaying()" onmouseup="openOrCloseSoundUP()">
+            <!--显示通过的关口-->
+            <div class="gateNO" id="gateNO">
+                <div class="gNO" id="gNO1"></div>
+                <div class="gNO" id="gNO2"></div>
+                <div class="gNO" id="gNO3"></div>
+                <div class="gNO" id="gNO4"></div>
+            </div>
+            <!--玩家小鸟-->
+            <div class="birdplayer" id="birdPlayer"></div>
+            <!--正在运行的障碍物-->
+            <div class="obstacle1" id="obstacle1"></div>
+            <div class="obstacle2" id="obstacle2"></div>
+            <div class="obstacle1" id="obstacle3"></div>
+            <div class="obstacle2" id="obstacle4"></div>
+            <div class="obstacle1" id="obstacle5"></div>
+            <div class="obstacle2" id="obstacle6"></div>
+            <!--障碍物出入屏蔽条-->
+            <div class="lefthide" id="lefthide"></div>
+            <div class="righthide" id="righthide"></div>
+            <div class="bottomhide" id="bottomhide"></div>
+            <!--声音开关-->
+            <div class="soundclass" id="soundclass"></div>
+        </div>
+        <!--关于界面-->
+        <div class="aboutPage" id="aboutPage" onclick="closeAboutPage()"></div>
+        <!--成绩排行榜-->
+        <div class="rankinglist" id="rankinglist">
+            <div class="rankinglistimg"></div>
+            <div class="history">
+                <div class="historylist" id="historylist1">
+                    <div class="hisnoclass2">
+                        <img src="image/no1.png" width="18" height="28" />
+                    </div>
+                    <div class="hisnoclass">
+                        <img src="image/no0.png" width="18" height="28" id="hisNO01" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO02" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO03" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO04" />
+                    </div>
+                </div>
+                <div class="historylist" id="historylist2">
+                    <div class="hisnoclass2">
+                        <img src="image/no2.png" width="18" height="28" />
+                    </div>
+                    <div class="hisnoclass">
+                        <img src="image/no0.png" width="18" height="28" id="hisNO11" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO12" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO13" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO14" />
+                    </div>
+                </div>
+                <div class="historylist" id="historylist3">
+                    <div class="hisnoclass2">
+                        <img src="image/no3.png" width="18" height="28" />
+                    </div>
+                    <div class="hisnoclass">
+                        <img src="image/no0.png" width="18" height="28" id="hisNO21" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO22" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO23" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO24" />
+                    </div>
+                </div>
+                <div class="historylist" id="historylist4">
+                    <div class="hisnoclass2">
+                        <img src="image/no4.png" width="18" height="28" />
+                    </div>
+                    <div class="hisnoclass">
+                        <img src="image/no0.png" width="18" height="28" id="hisNO31" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO32" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO33" />
+                        <img src="image/no0.png" width="18" height="28" id="hisNO34" />
+                    </div>
+                </div>
+            </div>
+            <div class="btnok" id="btnok" onclick="btn_OK()" onmousedown="downBtnOK()" onmouseup="upBtnOK()" onmouseout="outBtnOK()"></div>
+            <div class="btnshare" id="btnshare" onclick="shareNow()" onmousedown="downBtnshare()" onmouseup="upBtnshare()" onmouseout="outBtnshare()"></div>
+        </div>
+        <!--游戏结束时闪屏-->
+        <div class="gameover2" id="gameover2"></div>
+        <!--游戏结束-->
+        <div class="gameover1" id="gameover1">
+            <div class="gameoverimg"></div>
+            <div class="medalwallimg"></div>
+            <div class="medalimg" id="medalimg"></div>
+            <div class="newimg" id="newimg"></div>
+            <div class="integralimg1">
+                <img src="image/no0.png" width="14" height="20" id="igNO1" />
+                <img src="image/no0.png" width="14" height="20" id="igNO2" />
+                <img src="image/no0.png" width="14" height="20" id="igNO3" />
+                <img src="image/no0.png" width="14" height="20" id="igNO4" />
+            </div>
+            <div class="integralimg2">
+                <img src="image/no0.png" width="14" height="20" id="igNOB1" />
+                <img src="image/no0.png" width="14" height="20" id="igNOB2" />
+                <img src="image/no0.png" width="14" height="20" id="igNOB3" />
+                <img src="image/no0.png" width="14" height="20" id="igNOB4" />
+            </div>
+            <div class="retryimg" onclick="retryGM()" onmousedown="downBtnRetry2()" onmouseup="upBtnRetry2()" onmouseout="outBtnRetry2()" id="btnRetry2"></div>
+            <div class="rankingimg" onclick="openRankinglist()" onmousedown="downBtnRanking2()" onmouseup="upBtnRanking2()" onmouseout="outBtnRanking2()" id="btnRanking2"></div>
+        </div>
+        <!--活动墙面-->
+        <div class="wallDisplay" id="wall" onclick="openAboutPage()" onmouseup="openOrCloseSoundUP()"></div>
+    </div>
+    <!--添加两个并行音频-->
+    <span id="bgs"></span>
+    <span id="bgs2"></span>
+</body>
+</html>
